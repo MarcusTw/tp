@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Marcus Tan
 
-<img src="images/marcus.png" width="200px">
+<img src="images/marcustw.png" width="200px">
 
 [[github](http://github.com/marcustw)]
 [[portfolio](team/johndoe.md)]
