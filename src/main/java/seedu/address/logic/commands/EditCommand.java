@@ -19,6 +19,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MatriculationNumber;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -93,9 +94,11 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        MatriculationNumber updatedMatriculationNumber = editPersonDescriptor.getMatriculationNumber()
+                .orElse(personToEdit.getMatriculationNumber());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedMatriculationNumber, updatedTags);
     }
 
     @Override
@@ -124,6 +127,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private Email email;
+        private MatriculationNumber matriculationNumber;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -136,6 +140,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setMatriculationNumber(toCopy.matriculationNumber);
             setTags(toCopy.tags);
         }
 
@@ -168,6 +173,14 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+
+        public void setMatriculationNumber(MatriculationNumber matriculationNumber) {
+            this.matriculationNumber = matriculationNumber;
+        }
+
+        public Optional<MatriculationNumber> getMatriculationNumber() {
+            return Optional.ofNullable(matriculationNumber);
         }
 
         /**

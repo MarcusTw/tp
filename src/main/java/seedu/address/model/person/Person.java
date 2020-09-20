@@ -19,6 +19,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final MatriculationNumber matriculationNumber;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -26,11 +27,12 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, MatriculationNumber matriculationNumber, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.matriculationNumber = matriculationNumber;
         this.tags.addAll(tags);
     }
 
@@ -44,6 +46,10 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+    public MatriculationNumber getMatriculationNumber() {
+        return matriculationNumber;
     }
 
     /**
@@ -65,6 +71,7 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
+                && otherPerson.getMatriculationNumber().equals(getMatriculationNumber())
                 && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
     }
 
@@ -103,6 +110,8 @@ public class Person {
                 .append(getPhone())
                 .append(" Email: ")
                 .append(getEmail())
+                .append(" Matric Number: ")
+                .append(getMatriculationNumber())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
