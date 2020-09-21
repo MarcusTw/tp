@@ -1,12 +1,13 @@
 package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class MatriculationNumber {
     public final String value;
     private static final String DOMAIN_FIRST_CHARACTER_REGEX = "A";
-    private static final String DOMAIN_MIDDLE_REGEX = "[0-9]{7,8}";
-    private static final String DOMAIN_LAST_CHARACTER_REGEX = "[A-Z]{1,2}";
+    private static final String DOMAIN_MIDDLE_REGEX = "[0-9]{7}";
+    private static final String DOMAIN_LAST_CHARACTER_REGEX = "[A-Z]*";
     public static final String VALIDATION_REGEX = DOMAIN_FIRST_CHARACTER_REGEX
             + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
 
@@ -23,7 +24,7 @@ public class MatriculationNumber {
      */
     public MatriculationNumber(String matriculationNumber) {
         requireNonNull(matriculationNumber);
-        isValidMatriculationNumber(matriculationNumber);
+        checkArgument(isValidMatriculationNumber(matriculationNumber), MESSAGE_CONSTRAINTS);
         value = matriculationNumber;
     }
 
@@ -32,6 +33,7 @@ public class MatriculationNumber {
      */
     public static boolean isValidMatriculationNumber(String test) {
         return test.matches(VALIDATION_REGEX);
+//        return true;
     }
 
     @Override

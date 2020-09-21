@@ -85,7 +85,8 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code matriculationNumber} is invalid.
      */
-    public static MatriculationNumber parseMatriculationNum(String matriculationNumber) throws ParseException {
+    public static MatriculationNumber parseMatriculationNum(String matriculationNumber)
+            throws ParseException {
         requireNonNull(matriculationNumber);
         String trimmedMatriculationNum = matriculationNumber.trim();
         if (!MatriculationNumber.isValidMatriculationNumber(trimmedMatriculationNum)) {
