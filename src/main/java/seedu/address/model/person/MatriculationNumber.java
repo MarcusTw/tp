@@ -4,18 +4,19 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class MatriculationNumber {
-    public final String value;
-    private static final String DOMAIN_FIRST_CHARACTER_REGEX = "A";
-    private static final String DOMAIN_MIDDLE_REGEX = "[0-9]{7}";
-    private static final String DOMAIN_LAST_CHARACTER_REGEX = "[A-Z]*";
-    public static final String VALIDATION_REGEX = DOMAIN_FIRST_CHARACTER_REGEX
-            + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
-
     public static final String MESSAGE_CONSTRAINTS = "Matriculation Number should be in the format A1234567Z "
             + "and adhere to the following constraints:\n"
             + "1. The prefix should be A.\n"
             + "2. The domain middle portion should contain 7 numerical digits.\n"
             + "3. The last character is an alphabet character between A-Z.";
+
+    private static final String DOMAIN_FIRST_CHARACTER_REGEX = "A";
+    private static final String DOMAIN_MIDDLE_REGEX = "[0-9]{7}";
+    private static final String DOMAIN_LAST_CHARACTER_REGEX = "[A-Z]";
+    public static final String VALIDATION_REGEX = DOMAIN_FIRST_CHARACTER_REGEX
+            + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
+
+    public final String value;
 
     /**
      * Constructs a {@code MatriculationNumber}
@@ -33,7 +34,6 @@ public class MatriculationNumber {
      */
     public static boolean isValidMatriculationNumber(String test) {
         return test.matches(VALIDATION_REGEX);
-//        return true;
     }
 
     @Override

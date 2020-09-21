@@ -87,7 +87,8 @@ class JsonAdaptedPerson {
         final Phone modelPhone = new Phone(phone);
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Email.class.getSimpleName()));
         }
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
@@ -95,10 +96,11 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         if (matriculationNumber == null) {
-            throw new IllegalValueException(String.format(MatriculationNumber.MESSAGE_CONSTRAINTS));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    MatriculationNumber.class.getSimpleName()));
         }
         if (!MatriculationNumber.isValidMatriculationNumber(matriculationNumber)) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, MatriculationNumber.class.getSimpleName()));
+            throw new IllegalValueException(MatriculationNumber.MESSAGE_CONSTRAINTS);
         }
         //model MatriculationNumber
         final MatriculationNumber modelMNumber = new MatriculationNumber(matriculationNumber);
