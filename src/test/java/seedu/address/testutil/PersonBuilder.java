@@ -82,7 +82,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code MatriculationNumber} of the {@code Person} that we are building.
      */
     public PersonBuilder withMatriculationNumber(String matriculationNumber) {
         this.matriculationNumber = new MatriculationNumber(matriculationNumber);

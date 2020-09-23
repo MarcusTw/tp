@@ -31,8 +31,8 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_MATRIC_NO_AMY = "A1234567N";
-    public static final String VALID_MATRIC_NO_BOB = "A7654321B";
+    public static final String VALID_MATRIC_NUM_AMY = "A1234567N";
+    public static final String VALID_MATRIC_NUM_BOB = "A7654321B";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -42,8 +42,8 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String MATRIC_NO_AMY = " " + PREFIX_MATRICULATION_NUMBER + VALID_MATRIC_NO_AMY;
-    public static final String MATRIC_NO_BOB = " " + PREFIX_MATRICULATION_NUMBER + VALID_MATRIC_NO_BOB;
+    public static final String MATRIC_NUM_AMY = " " + PREFIX_MATRICULATION_NUMBER + VALID_MATRIC_NUM_AMY;
+    public static final String MATRIC_NUM_BOB = " " + PREFIX_MATRICULATION_NUMBER + VALID_MATRIC_NUM_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -62,9 +62,11 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
+                .withMatriculationNumber(VALID_MATRIC_NUM_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+                .withMatriculationNumber(VALID_MATRIC_NUM_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
@@ -123,5 +125,4 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
-
 }
