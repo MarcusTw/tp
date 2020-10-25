@@ -88,17 +88,20 @@ public class AtasParser {
 
             case EditStudentCommand.COMMAND_WORD:
                 //Sets the previous command to a confirmation edit student command.
-                this.previousCommand = Optional.of(new ConfirmationCommand(new EditStudentCommandParser().parse(arguments)));
+                this.previousCommand =
+                        Optional.of(new ConfirmationCommand(new EditStudentCommandParser().parse(arguments)));
                 return previousCommand.get();
 
             case DeleteStudentCommand.COMMAND_WORD:
                 //Sets the previous command to a confirmation delete student command.
-                this.previousCommand = Optional.of(new ConfirmationCommand(new DeleteStudentCommandParser().parse(arguments)));
+                this.previousCommand =
+                        Optional.of(new ConfirmationCommand(new DeleteStudentCommandParser().parse(arguments)));
                 return previousCommand.get();
 
             case ClearStudentListCommand.COMMAND_WORD:
                 //Sets the previous command to a confirmation clear students command.
-                this.previousCommand = Optional.of(new ConfirmationCommand(new ClearStudentListCommand()));
+                this.previousCommand =
+                        Optional.of(new ConfirmationCommand(new ClearStudentListCommand()));
                 return previousCommand.get();
 
             case FindStudentsCommand.COMMAND_WORD:
@@ -126,15 +129,18 @@ public class AtasParser {
                 return new AddSessionCommandParser().parse(arguments);
 
             case DeleteSessionCommand.COMMAND_WORD:
-                this.previousCommand = Optional.of(new ConfirmationCommand(new DeleteSessionCommandParser().parse(arguments)));
+                this.previousCommand =
+                        Optional.of(new ConfirmationCommand(new DeleteSessionCommandParser().parse(arguments)));
                 return previousCommand.get();
 
             case EditSessionCommand.COMMAND_WORD:
-                this.previousCommand = Optional.of(new ConfirmationCommand(new EditSessionCommandParser().parse(arguments)));
+                this.previousCommand =
+                        Optional.of(new ConfirmationCommand(new EditSessionCommandParser().parse(arguments)));
                 return previousCommand.get();
 
             case ClearSessionsCommand.COMMAND_WORD:
-                this.previousCommand = Optional.of(new ConfirmationCommand(new ClearSessionsCommand()));
+                this.previousCommand =
+                        Optional.of(new ConfirmationCommand(new ClearSessionsCommand()));
                 return previousCommand.get();
 
             case ParticipateCommand.COMMAND_WORD:

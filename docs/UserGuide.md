@@ -28,14 +28,14 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
       1. [Adding a student](#addstu)
       1. [Listing all students](#liststu)
       1. [Locating students by name](#findstu)
-      1. [Editing a student's particulars](#editstu)
       1. [Deleting a student](#deletestu)
+      1. [Editing a student's particulars](#editstu)
       1. [Clearing the student list](#clearstu)
    1. [Sessions](#addses)
       1. [Adding a session](#addses)
       1. [Deleting a session](#deleteses)
-      1. [Clearing the session list](#clearses)
       1. [Editing a session](#editses)
+      1. [Clearing the session list](#clearses)
       1. [Entering a session](#enterses)
    1. [Current session](#participate)
       1. [Toggling participation status of students](#participate)
@@ -265,26 +265,7 @@ Examples:
 * `findstu kent ridge` returns `Kent Tan` and `Mark Ridge`<br>
 [Insert image of an example of result of `findstu Cena`]
 
-### <a name="editstu"></a>4.i.d. Editing a student's particulars : `editstu`
-
-The user will be prompted to confirm their decision here.
-
-If yes: edits and updates the particulars of the specified student from the student list.
-
-```
-editstu INDEX n/UPDATED_NAME
-```
-
-* Edits the student at the specified `INDEX` with the specified updated particular to be updated.
-* The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …
-* User will then be prompted for a confirmation input **`(yes/no)`**.
-
-Examples:
-* `editstu 2 n/John Cena` followed by `yes` edits the 2nd student in the student list with an updated name `John Cena`.
-* `editstu 3 t/Joker` followed by `y` edits the 3rd student in the student list with an updated tag `Joker`.
-
-### <a name="deletestu"></a>4.ii.e. Deleting a student : `deletestu`
+### <a name="deletestu"></a>4.ii.d. Deleting a student : `deletestu`
 
 The user will be prompted to confirm their decision here.
 
@@ -302,6 +283,25 @@ deletestu INDEX
 Examples:
 * `liststu` followed by `deletestu 2` followed by `yes` deletes the 2nd student in the student list.
 * `findstu Betsy` followed by `deletestu 1` followed by `y` deletes the 1st student in the results of the `findstu` command.
+
+### <a name="editstu"></a>4.ii.e. Editing a student's particulars : `editstu`
+
+The user will be prompted to confirm their decision here.
+
+If yes: edits and updates the particulars of the specified student from the student list.
+
+```
+editstu INDEX n/UPDATED_NAME
+```
+
+* Edits the student at the specified `INDEX` with the specified updated particular to be updated.
+* The index refers to the index number shown in the displayed student list.
+* The index **must be a positive integer** 1, 2, 3, …
+* User will then be prompted for a confirmation input **`(yes/no)`**.
+
+Examples:
+* `editstu 2 n/John Cena` followed by `yes` edits the 2nd student in the student list with an updated name `John Cena`.
+* `editstu 3 t/Joker` followed by `y` edits the 3rd student in the student list with an updated tag `Joker`.
 
 ###  <a name="clearstu"></a>4.ii.f. Clearing the student list : `clearstu`
 
@@ -346,15 +346,7 @@ deleteses INDEX
 Examples:
 * `deleteses s/tut1 d/12/7/2020` followed by `yes` deletes the 2nd session in the session list.
 
-###  <a name="clearses"></a>4.iii.c. Clearing the session list : `clearses`
-
-Deletes all the sessions in the session list.
-
-```
-clearses
-```
-
-### <a name="editses"></a>4.iii.d. Editing a session : `editses`
+### <a name="editses"></a>4.iii.c. Editing a session : `editses`
 
 The user will be prompted to confirm their decision here.
 
@@ -371,6 +363,14 @@ editses INDEX s/UPDATED_NAME d/UPDATED_DATE
 
 Examples:
 * `editses 2 s/Tutorial1 d/10/10/2020` followed by `yes` edits the 2nd session in the session list with a new session name `Tutorial1` and a new session date `10/10/2020`.
+
+###  <a name="clearses"></a>4.iii.d. Clearing the session list : `clearses`
+
+Deletes all the sessions in the session list.
+
+```
+clearses
+```
 
 
 ### <a name="enterses"></a>4.iii.e. Entering a session : `enterses`

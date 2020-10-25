@@ -30,16 +30,16 @@ public class HelpWindow extends UiPart<Stage> {
             + "Add a student: addstu n/NAME m/MATRICULATION_NUMBER e/NUS_EMAIL_ADDRESS [t/TAG]…\u200B\n"
             + "List all students: liststu\n"
             + "Find student(s): findstu KEYWORD [MORE_KEYWORDS]\n"
-            + "Edit a student's particulars: editstu INDEX [n/NAME] [m/MATRICULATION_NUMBER] "
-            + "[e/NUS_EMAIL_ADDRESS] [t/TAG]…\u200B\n"
             + "Delete a student: deletestu INDEX\n"
+            + "Edit a student's particulars: editstu INDEX [n/UPDATED_NAME] [m/UPDATED_MATRICULATION_NUMBER] "
+            + "[e/UPDATED_NUS_EMAIL_ADDRESS] [t/UPDATED_TAG]…\u200B\n"
             + "Clear the student list: clearstu\n";
 
     public static final String COMMAND_LIST_SESSIONS = "Sessions:\n"
             + "Add a session: addses s/SESSION_NAME d/SESSION_DATE\n"
             + "Delete a session: deleteses INDEX\n"
-            + "Clear the session list: clearses\n"
             + "Edit a session: editses INDEX [s/SESSION_NAME] [d/SESSION_DATE]\n"
+            + "Clear the session list: clearses\n"
             + "Enter a session: enterses INDEX\n";
 
     public static final String COMMAND_LIST_CURRENT_SESSION = "Current Session:\n"
