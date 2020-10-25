@@ -9,7 +9,12 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
 
 ## Table of Contents
 
-1. [Overview](#overview)
+1. [Introduction](#intro)
+   1. [Overview](#overview)
+   1. [Preview](#preview)
+1. [About this guide](#aboutthis)
+   1. [Symbols and Formatting](#symbols)
+   1. [Key terms](#keyterms) 
 1. [Quick start](#qs)
 1. [Features](#features)
    1. [General](#help)
@@ -41,14 +46,70 @@ ATAS is a **desktop app for managing students’ particulars, optimized for use 
 1. [Command summary](#cs)
 
 --------------------------------------------------------------------------------------------------------------------
+## <a name = "intro"></a> 1. Introduction
 
-## <a name="overview"></a>1. Overview
+Hello fellow Computing friends! Have you ever found the pace of your tutorials slowed down because no one volunteers to answer questions posed by your teaching assistant (TA)? If you are a TA, have you ever
+felt that you cannot remember your tutees' names and having trouble keeping track of their attendance and participation in class? Have you ever wanted an application
+that can help you as a TA or help your TA counter these problems to make tutorials more efficient and meaningful?
+
+If the answer to all the questions above is "yes", **ATAS** is for _the_ one-stop managing application for you or your TA! **ATAS** is a streamlined **Command Line Interface** application that can
+match your efficiency and typing prowess as a Computing student. With **ATAS**, tutorials will be more organised and well-managed, so that your tutorials will be more than ever meaningful.
+
+### <a name="overview"></a>1.1 Overview
 
 [todo] mention something about the different things we can do for students, sessions, current session, etc.
 
+**ATAS** allows the management of 2 important item types:
+
+|No. |Item type |Alias |Attributes |
+|----|----------|------|-----------|
+|1 |Student |``stu`` |name, matriculation, email, tag
+|2 |Session |``ses`` |name, date, tag
+
+In each session, we have a list of students as well as their attendance attributes for that session. Attendance attributes of a student
+tells us whether that student is present and whether the student participates in that session.
+
+### <a name="preview"></a>1.2 Preview
+
+The following is the GUI of our application:
+    ![UiPreview](images/UiPreview.png)
+    
+GUI Components:
+   1. **Command box**: where you enter your commands.
+   1. **Result box**: where the result of a command is shown. It can show a success message or a failure message if something wrong happens.
+   1. **Tabs**: shows what item type you are viewing.
+   1. **List box**: where the list of students, sessions or attendance attributes are shown. For example, if you are in `Students` tab, then a list of students and their particulars are shown.
+
+--------------------------------------------------------------------------------------------------------------------
+## <a name="aboutthis"></a>2. About this guide
+
+Our aim when writing this document is to help you, as a user, to get started with **ATAS**. This guide showcases all the available commands, their syntax (command input format)
+, and specific examples for clearer illustration.
+
+This section entails on how to use the guide.
+
+### <a name="symbols"></a> 2.1 Symbols and Formatting
+
+For the good majority of visual learners, we figured to present information with symbols of different shapes and colours to help you along reading this guide.
+
+|Symbol/Format | Explanation |
+|--------------|-------------|
+|[lightbulb o] | Tips |
+|``consolas font`` | Representing a keyterm or a command |
+
+### <a name="keyterms"></a> 2.2 Key terms
+
+You will come across some of these terms in this document, and it will be good to have a clear understanding of what these terms mean.
+
+|Term |Explanation |
+|-----|------------|
+|command | A line of text that user can type into the command box for the application to execute. |
+|parameter| Specific information that is supplied by user. |
+|index | The position of an item in a displayed list. For simplicity, our indexes start from 1.|
+
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="qs"></a>2. Quick start
+## <a name="qs"></a>3. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
