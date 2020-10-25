@@ -67,6 +67,7 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
             throw new DuplicateSessionException();
         }
         this.sessions.setAll(sessions);
+        FXCollections.sort(this.sessions);
     }
 
     /**
@@ -120,6 +121,7 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
         }
         session.initializeSession(internalStudentList);
         sessions.add(session);
+        FXCollections.sort(this.sessions);
     }
 
     /**
@@ -131,6 +133,7 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
         if (!sessions.remove(target)) {
             throw new SessionNotFoundException();
         }
+        FXCollections.sort(this.sessions);
     }
 
     public void setSession(Session oldSession, Session newSession) {
@@ -143,6 +146,7 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
 
         sessions.removeIf(oldSession::isSameSession);
         sessions.add(newSession);
+        FXCollections.sort(this.sessions);
     }
 
     public Session getSessionBasedOnId(Index index) {
@@ -165,6 +169,7 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
         for (Session s : sessions) {
             s.updateSessionAfterDelete(studentId, internalStudentList);
         }
+        FXCollections.sort(this.sessions);
     }
 
     /**
@@ -174,6 +179,7 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
         for (Session s : sessions) {
             s.updateSessionAfterAdd(internalStudentList);
         }
+        FXCollections.sort(this.sessions);
     }
 
     /**

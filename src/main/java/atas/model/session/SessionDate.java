@@ -91,7 +91,7 @@ public class SessionDate implements Comparable<SessionDate> {
 
     @Override
     public int compareTo(SessionDate other) {
-        return this.value.compareTo(other.value);
+        return other.value.compareTo(this.value);
     }
 
     @Override
