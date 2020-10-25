@@ -139,7 +139,7 @@ You will come across some of these terms in this document, and it will be good t
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="features"></a>3. Features
+## <a name="features"></a>4. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -149,15 +149,15 @@ You will come across some of these terms in this document, and it will be good t
   e.g. in `addstu n/STUDENT_NAME` should be changed to `addstu n/John Cena`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Cena t/foreigner` or simply as `n/John Cena`.
+  e.g `n/NAME m/MATRICULATION_NUMBER e/EMAIL_ADDRESS [t/TAG]` can be used as `n/John Cena m/A0123456B e/jcena@u.nus.edu t/foreigner` or simply as `n/John Cena`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/foreigner`, `t/foreigner t/enthusiastic` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME m/MATRICULATION_NUMBER`, `m/MATRICULATION_NUMBER n/NAME` is also acceptable. </div>
+  e.g. if the command specifies `n/NAME m/MATRICULATION_NUMBER e/EMAIL_ADDRESS`, `e/EMAIL_ADDRESS m/MATRICULATION_NUMBER n/NAME` is also acceptable. </div>
 
-### <a name="help"></a>3.i.a. Viewing help : `help`
+### <a name="help"></a>4.i.a. Viewing help : `help`
 
 Shows the list of available commands and a link to access the user guide.
 
@@ -167,7 +167,7 @@ Shows the list of available commands and a link to access the user guide.
 help
 ```
 
-### <a name="switch"></a>3.i.b. Switching between tabs : `switch`
+### <a name="switch"></a>4.i.b. Switching between tabs : `switch`
 
 Switches between tabs.
 
@@ -182,7 +182,7 @@ switch TAB_NAME
 Example:
 * `switch sessions` switches from the current tab to the sessions tab.
 
-### <a name="rng"></a>3.i.c. Generating the name of a randomly-selected student : `rng`
+### <a name="rng"></a>4.i.c. Generating the name of a randomly-selected student : `rng`
 
 Chooses a student at random from the student list.
 
@@ -190,7 +190,7 @@ Chooses a student at random from the student list.
 rng
 ```
 
-### <a name="undo"></a>3.i.d. Undo-ing a command : `undo`
+### <a name="undo"></a>4.i.d. Undo-ing a command : `undo`
 
 Undoes a command and essentially returns ATAS to the state prior to performing that command.
 
@@ -204,7 +204,7 @@ Commands currently supported:
 * Editing a student/session: `editstu` / `editses`
 * Clearing all students/sessions: `clearstu` / `clearses`
 
-### <a name="redo"></a>3.i.e. Redo-ing a command : `redo`
+### <a name="redo"></a>4.i.e. Redo-ing a command : `redo`
 
 Redoes a command that was most recently undone and returns ATAS to the state after having performed that command.
 
@@ -214,7 +214,7 @@ Essentially the reverse of undo-ing a command.
 redo
 ```
 
-###  <a name="exit"></a>3.i.f. Exiting the program : `bye`
+###  <a name="exit"></a>4.i.f. Exiting the program : `bye`
 
 Exits the application.
 
@@ -222,7 +222,7 @@ Exits the application.
 bye
 ```
 
-### <a name="addstu"></a>3.ii.a. Adding a student : `addstu`
+### <a name="addstu"></a>4.ii.a. Adding a student : `addstu`
 
 Adds a student to the student list.
 
@@ -237,7 +237,7 @@ Examples:
 * `addstu n/John Cena m/A0123456J e/thechamp@u.nus.edu`
 * `addstu n/Alvina Handsome m/A0123456X e/handsome.alvina@u.nus.edu t/new`
 
-### <a name="liststu"></a>3.ii.b. Listing all students : `liststu`
+### <a name="liststu"></a>4.ii.b. Listing all students : `liststu`
 
 Shows a list of all students in the current student list.
 
@@ -245,7 +245,7 @@ Shows a list of all students in the current student list.
 liststu
 ```
 
-### <a name="findstu"></a>3.ii.c. Locating students by name : `findstu`
+### <a name="findstu"></a>4.ii.c. Locating students by name : `findstu`
 
 Finds students whose names contain any of the given keywords.
 
@@ -265,7 +265,7 @@ Examples:
 * `findstu kent ridge` returns `Kent Tan` and `Mark Ridge`<br>
 [Insert image of an example of result of `findstu Cena`]
 
-### <a name="editstu"></a>3.i.d. Editing a student's particulars : `editstu`
+### <a name="editstu"></a>4.i.d. Editing a student's particulars : `editstu`
 
 The user will be prompted to confirm their decision here.
 
@@ -284,7 +284,7 @@ Examples:
 * `editstu 2 n/John Cena` followed by `yes` edits the 2nd student in the student list with an updated name `John Cena`.
 * `editstu 3 t/Joker` followed by `y` edits the 3rd student in the student list with an updated tag `Joker`.
 
-### <a name="deletestu"></a>3.ii.e. Deleting a student : `deletestu`
+### <a name="deletestu"></a>4.ii.e. Deleting a student : `deletestu`
 
 The user will be prompted to confirm their decision here.
 
@@ -303,7 +303,7 @@ Examples:
 * `liststu` followed by `deletestu 2` followed by `yes` deletes the 2nd student in the student list.
 * `findstu Betsy` followed by `deletestu 1` followed by `y` deletes the 1st student in the results of the `findstu` command.
 
-###  <a name="clearstu"></a>3.ii.f. Clearing the student list : `clearstu`
+###  <a name="clearstu"></a>4.ii.f. Clearing the student list : `clearstu`
 
 The user will be prompted to confirm their decision here.
 
@@ -313,7 +313,7 @@ If yes: removes all students from the student list.
 clearstu
 ```
 
-### <a name="addses"></a>3.iii.a. Adding a session : `addses`
+### <a name="addses"></a>4.iii.a. Adding a session : `addses`
 
 Adds a session to session list.
 
@@ -328,7 +328,7 @@ Two sessions cannot have the same name
 Examples:
 * `addses s/tut1 d/12/7/2020`
 
-### <a name="deleteses"></a>3.iii.b. Deleting a session : `deleteses`
+### <a name="deleteses"></a>4.iii.b. Deleting a session : `deleteses`
 
 The user will be prompted to confirm their decision here.
 
@@ -346,7 +346,7 @@ deleteses INDEX
 Examples:
 * `deleteses s/tut1 d/12/7/2020` followed by `yes` deletes the 2nd session in the session list.
 
-###  <a name="clearses"></a>3.iii.c. Clearing the session list : `clearses`
+###  <a name="clearses"></a>4.iii.c. Clearing the session list : `clearses`
 
 Deletes all the sessions in the session list.
 
@@ -354,7 +354,7 @@ Deletes all the sessions in the session list.
 clearses
 ```
 
-### <a name="editses"></a>3.iii.d. Editing a session : `editses`
+### <a name="editses"></a>4.iii.d. Editing a session : `editses`
 
 The user will be prompted to confirm their decision here.
 
@@ -373,7 +373,7 @@ Examples:
 * `editses 2 s/Tutorial1 d/10/10/2020` followed by `yes` edits the 2nd session in the session list with a new session name `Tutorial1` and a new session date `10/10/2020`.
 
 
-### <a name="enterses"></a>3.iii.e. Entering a session : `enterses`
+### <a name="enterses"></a>4.iii.e. Entering a session : `enterses`
 
 Enters a session in the session list.
 
@@ -388,7 +388,7 @@ enterses INDEX
 Examples:
 * `enterses 1` enters the first session and allows you to use PARTICIPATE and PRESENCE commands.
 
-### <a name="participate"></a>3.iv.a. Toggling participation status of students : `participate`
+### <a name="participate"></a>4.iv.a. Toggling participation status of students : `participate`
 
 Toggles the participation status of the students in the student list of the session.
 
@@ -403,7 +403,7 @@ participate INDEX_RANGE
 Examples:
 * `participate 1-4` toggles the participation status of students 1 to 4.
 
-### <a name="presence"></a>3.iv.b. Toggling presence status of students : `presence`
+### <a name="presence"></a>4.iv.b. Toggling presence status of students : `presence`
 
 Toggles the presence status of students in the student list of the session.
 
@@ -418,7 +418,7 @@ presence INDEX_RANGE
 Examples:
 * `presence 1-4` toggles the presence status of students 1 to 4.
 
-### <a name="ucp"></a>3.v. User confirmation prompt
+### <a name="ucp"></a>4.v. User confirmation prompt
 
 Prompts the user to confirm the execution of commands that may permanently remove information.
 These commands are: `deletestu`, `editstu`,`clearstu`, `deleteses`, `editses`.
@@ -430,18 +430,18 @@ Examples:
 * `editses 3 s/SESSION_NAME` is followed with `Edit 3? (yes/no)`.
 * `clearstu` is followed with `Clear list? (yes/no)`.
 
-###  <a name="sd"></a>3.vi. Saving the data
+###  <a name="sd"></a>4.vi. Saving the data
 
 Students’ data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-## <a name="faq"></a>4. FAQ
+## <a name="faq"></a>5. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ATAS home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## <a name="cs"></a>5. Command summary
+## <a name="cs"></a>6. Command summary
 
 Action | Format, Examples
 --------|------------------
