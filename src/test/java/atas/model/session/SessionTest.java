@@ -105,7 +105,7 @@ class SessionTest {
     public void compareTo() {
         Session actual = TypicalSessions.TUT1;
         Session expected = TypicalSessions.TUT2;
-        assertTrue(expected.compareTo(actual) > 0);
+        assertTrue(expected.compareTo(actual) < 0);
     }
 
 }
