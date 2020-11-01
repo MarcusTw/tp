@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 
 import atas.commons.core.index.Index;
 import atas.logic.commands.studentlist.ClearStudentListCommand;
-import atas.logic.commands.studentlist.DeleteStudentListCommand;
-import atas.logic.commands.studentlist.EditStudentListCommand;
+import atas.logic.commands.studentlist.DeleteStudentCommand;
+import atas.logic.commands.studentlist.EditStudentCommand;
 import atas.model.Model;
 import atas.model.ModelManager;
 import atas.model.UserPrefs;
@@ -34,9 +34,9 @@ public class ConfirmationAcceptCommandTest {
 
     public void execute_acceptValidDeleteCommand_success() {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
-        DeleteStudentListCommand deleteStudentCommand = new DeleteStudentListCommand(INDEX_FIRST_STUDENT);
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_STUDENT);
 
-        String expectedMessage = String.format(DeleteStudentListCommand.MESSAGE_DELETE_STUDENT_SUCCESS,
+        String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS,
                 studentToDelete);
 
         ModelManager expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
@@ -50,7 +50,7 @@ public class ConfirmationAcceptCommandTest {
     @Test
     public void execute_invalidDeleteStudentCommand_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getNumberOfStudents() + 1);
-        DeleteStudentListCommand deleteStudentCommand = new DeleteStudentListCommand(outOfBoundIndex);
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(outOfBoundIndex);
 
         ConfirmationAcceptCommand confirmationAcceptCommand = new ConfirmationAcceptCommand(deleteStudentCommand);
         assertCommandFailure(confirmationAcceptCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -62,10 +62,10 @@ public class ConfirmationAcceptCommandTest {
 
         Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Student editedStudent = new StudentBuilder(studentInFilteredList).withName(VALID_NAME_BOB).build();
-        EditStudentListCommand editStudentCommand = new EditStudentListCommand(INDEX_FIRST_STUDENT,
+        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT,
                 new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditStudentListCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
+        String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
                 new StudentList(model.getStudentList()), new UserPrefs(), EMPTY_MEMO_CONTENT);
@@ -78,10 +78,10 @@ public class ConfirmationAcceptCommandTest {
     @Test
     public void execute_invalidEditStudentCommand_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getNumberOfStudents() + 1);
-        EditStudentListCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder()
+        EditStudentCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder()
 
                 .withName(VALID_NAME_BOB).build();
-        EditStudentListCommand editStudentCommand = new EditStudentListCommand(outOfBoundIndex, descriptor);
+        EditStudentCommand editStudentCommand = new EditStudentCommand(outOfBoundIndex, descriptor);
 
         ConfirmationAcceptCommand confirmationAcceptCommand = new ConfirmationAcceptCommand(editStudentCommand);
 
@@ -101,13 +101,13 @@ public class ConfirmationAcceptCommandTest {
     @Test
     public void equals() {
 
-        DeleteStudentListCommand firstDeleteStudentCommand = new DeleteStudentListCommand(INDEX_FIRST_STUDENT);
-        DeleteStudentListCommand secondDeleteStudentCommand = new DeleteStudentListCommand(INDEX_SECOND_STUDENT);
+        DeleteStudentCommand firstDeleteStudentCommand = new DeleteStudentCommand(INDEX_FIRST_STUDENT);
+        DeleteStudentCommand secondDeleteStudentCommand = new DeleteStudentCommand(INDEX_SECOND_STUDENT);
 
         Student editedStudent = new StudentBuilder().build();
-        EditStudentListCommand.EditStudentDescriptor descriptor =
+        EditStudentCommand.EditStudentDescriptor descriptor =
                 new EditStudentDescriptorBuilder(editedStudent).build();
-        EditStudentListCommand editStudentCommand = new EditStudentListCommand(INDEX_FIRST_STUDENT, descriptor);
+        EditStudentCommand editStudentCommand = new EditStudentCommand(INDEX_FIRST_STUDENT, descriptor);
 
         ClearStudentListCommand clearStudentsCommand = new ClearStudentListCommand();
 

@@ -24,8 +24,8 @@ import atas.logic.commands.sessionlist.session.ParticipateCommand;
 import atas.logic.commands.sessionlist.session.PresenceCommand;
 import atas.logic.commands.studentlist.AddStudentCommand;
 import atas.logic.commands.studentlist.ClearStudentListCommand;
-import atas.logic.commands.studentlist.DeleteStudentListCommand;
-import atas.logic.commands.studentlist.EditStudentListCommand;
+import atas.logic.commands.studentlist.DeleteStudentCommand;
+import atas.logic.commands.studentlist.EditStudentCommand;
 import atas.model.Model;
 import atas.testutil.EditSessionDescriptorBuilder;
 import atas.testutil.EditStudentDescriptorBuilder;
@@ -54,7 +54,7 @@ public class UndoCommandTest {
 
     @Test
     public void execute_undoDeleteStudentCommand_success() throws CommandException {
-        createCommandAndExecute(new DeleteStudentListCommand(INDEX_FIRST_STUDENT), modelCopy);
+        createCommandAndExecute(new DeleteStudentCommand(INDEX_FIRST_STUDENT), modelCopy);
         assertUndoCommandSuccess(modelCopy);
     }
 
@@ -66,7 +66,7 @@ public class UndoCommandTest {
 
     @Test
     public void execute_undoEditStudentCommand_success() throws CommandException {
-        createCommandAndExecute(new EditStudentListCommand(INDEX_FIRST_STUDENT,
+        createCommandAndExecute(new EditStudentCommand(INDEX_FIRST_STUDENT,
                 new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build()), modelCopy);
         assertUndoCommandSuccess(modelCopy);
     }

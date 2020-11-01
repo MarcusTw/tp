@@ -44,13 +44,13 @@ public class ConfirmationCommand extends ConfirmCommand {
         if (dangerousCommand instanceof IndexedStudentListCommand) {
             Index targetIndex = ((IndexedStudentListCommand) dangerousCommand).getTargetIndex();
             int numberOfStudents = model.getNumberOfStudents();
-            if (targetIndex.getOneBased() > numberOfStudents) {
+            if (targetIndex.getZeroBased() >= numberOfStudents) {
                 throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
             }
         } else if (dangerousCommand instanceof IndexedSessionListCommand) {
             Index targetIndex = ((IndexedSessionListCommand) dangerousCommand).getTargetIndex();
             int numberOfSessions = model.getNumberOfSessions();
-            if (targetIndex.getOneBased() > numberOfSessions) {
+            if (targetIndex.getZeroBased() >= numberOfSessions) {
                 throw new CommandException(MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
             }
         }

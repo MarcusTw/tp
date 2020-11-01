@@ -5,7 +5,7 @@ import static atas.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import org.junit.jupiter.api.Test;
 
-import atas.logic.commands.studentlist.DeleteStudentListCommand;
+import atas.logic.commands.studentlist.DeleteStudentCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -20,12 +20,12 @@ public class DeleteStudentCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        CommandParserTestUtil.assertParseSuccess(parser, "1", new DeleteStudentListCommand(INDEX_FIRST_STUDENT));
+        CommandParserTestUtil.assertParseSuccess(parser, "1", new DeleteStudentCommand(INDEX_FIRST_STUDENT));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         CommandParserTestUtil.assertParseFailure(parser, "a",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteStudentListCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteStudentCommand.MESSAGE_USAGE));
     }
 }

@@ -2,6 +2,7 @@ package atas.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import atas.commons.core.GuiSettings;
@@ -44,7 +45,13 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         CommandResult commandResult;
         Command command = atasParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        try {
+            commandResult = command.execute(model);
+        } catch (CommandException e) {
+            // Catch CommandException for atasParser to change the internal state if necessary.
+            atasParser.trackInternalState(e);
+            throw e;
+        }
 
         try {
             storage.saveSessionList(model.getSessionList());

@@ -25,7 +25,7 @@ import atas.model.tag.Tag;
 /**
  * Edits the details of an existing student in the student list.
  */
-public class EditStudentListCommand extends DangerousCommand implements IndexedStudentListCommand {
+public class EditStudentCommand extends DangerousCommand implements IndexedStudentListCommand {
 
     public static final String COMMAND_WORD = "editstu";
 
@@ -54,7 +54,7 @@ public class EditStudentListCommand extends DangerousCommand implements IndexedS
      * @param targetIndex The Index of the student in the filtered student list to edit.
      * @param editStudentDescriptor The details to edit the student with.
      */
-    public EditStudentListCommand(Index targetIndex, EditStudentDescriptor editStudentDescriptor) {
+    public EditStudentCommand(Index targetIndex, EditStudentDescriptor editStudentDescriptor) {
 
         requireNonNull(targetIndex);
         requireNonNull(editStudentDescriptor);
@@ -115,12 +115,12 @@ public class EditStudentListCommand extends DangerousCommand implements IndexedS
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditStudentListCommand)) {
+        if (!(other instanceof EditStudentCommand)) {
             return false;
         }
 
         // state check
-        EditStudentListCommand e = (EditStudentListCommand) other;
+        EditStudentCommand e = (EditStudentCommand) other;
         return targetIndex.equals(e.targetIndex)
                 && editStudentDescriptor.equals(e.editStudentDescriptor);
     }

@@ -26,8 +26,8 @@ import static atas.testutil.TypicalIndexes.INDEX_THIRD_STUDENT;
 import org.junit.jupiter.api.Test;
 
 import atas.commons.core.index.Index;
-import atas.logic.commands.studentlist.EditStudentListCommand;
-import atas.logic.commands.studentlist.EditStudentListCommand.EditStudentDescriptor;
+import atas.logic.commands.studentlist.EditStudentCommand;
+import atas.logic.commands.studentlist.EditStudentCommand.EditStudentDescriptor;
 import atas.model.student.Email;
 import atas.model.student.Matriculation;
 import atas.model.student.Name;
@@ -39,7 +39,7 @@ public class EditStudentCommandParserTest {
     private static final String TAG_EMPTY = " " + CliSyntax.PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStudentListCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditStudentCommand.MESSAGE_USAGE);
 
     private EditStudentCommandParser parser = new EditStudentCommandParser();
 
@@ -49,7 +49,7 @@ public class EditStudentCommandParserTest {
         CommandParserTestUtil.assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        CommandParserTestUtil.assertParseFailure(parser, "1", EditStudentListCommand.MESSAGE_NOT_EDITED);
+        CommandParserTestUtil.assertParseFailure(parser, "1", EditStudentCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
         CommandParserTestUtil.assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
@@ -114,7 +114,7 @@ public class EditStudentCommandParserTest {
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withMatriculation(VALID_MATRICULATION_BOB).withEmail(VALID_EMAIL_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-        EditStudentListCommand expectedCommand = new EditStudentListCommand(targetIndex, descriptor);
+        EditStudentCommand expectedCommand = new EditStudentCommand(targetIndex, descriptor);
 
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -126,7 +126,7 @@ public class EditStudentCommandParserTest {
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withMatriculation(VALID_MATRICULATION_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
-        EditStudentListCommand expectedCommand = new EditStudentListCommand(targetIndex, descriptor);
+        EditStudentCommand expectedCommand = new EditStudentCommand(targetIndex, descriptor);
 
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -136,27 +136,27 @@ public class EditStudentCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_STUDENT;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditStudentListCommand.EditStudentDescriptor
+        EditStudentCommand.EditStudentDescriptor
             descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY).build();
-        EditStudentListCommand expectedCommand = new EditStudentListCommand(targetIndex, descriptor);
+        EditStudentCommand expectedCommand = new EditStudentCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
 
         // matriculation
         userInput = targetIndex.getOneBased() + MATRICULATION_DESC_AMY;
         descriptor = new EditStudentDescriptorBuilder().withMatriculation(VALID_MATRICULATION_AMY).build();
-        expectedCommand = new EditStudentListCommand(targetIndex, descriptor);
+        expectedCommand = new EditStudentCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
 
         // email
         userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
         descriptor = new EditStudentDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
-        expectedCommand = new EditStudentListCommand(targetIndex, descriptor);
+        expectedCommand = new EditStudentCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
         descriptor = new EditStudentDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
-        expectedCommand = new EditStudentListCommand(targetIndex, descriptor);
+        expectedCommand = new EditStudentCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -169,7 +169,7 @@ public class EditStudentCommandParserTest {
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withMatriculation(VALID_MATRICULATION_BOB)
                 .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
-        EditStudentListCommand expectedCommand = new EditStudentListCommand(targetIndex, descriptor);
+        EditStudentCommand expectedCommand = new EditStudentCommand(targetIndex, descriptor);
 
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -181,14 +181,14 @@ public class EditStudentCommandParserTest {
         String userInput = targetIndex.getOneBased() + INVALID_MATRICULATION_DESC + MATRICULATION_DESC_BOB;
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder()
                 .withMatriculation(VALID_MATRICULATION_BOB).build();
-        EditStudentListCommand expectedCommand = new EditStudentListCommand(targetIndex, descriptor);
+        EditStudentCommand expectedCommand = new EditStudentCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_MATRICULATION_DESC + MATRICULATION_DESC_BOB;
         descriptor = new EditStudentDescriptorBuilder().withMatriculation(VALID_MATRICULATION_BOB)
                 .withEmail(VALID_EMAIL_BOB).build();
-        expectedCommand = new EditStudentListCommand(targetIndex, descriptor);
+        expectedCommand = new EditStudentCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -198,7 +198,7 @@ public class EditStudentCommandParserTest {
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withTags().build();
-        EditStudentListCommand expectedCommand = new EditStudentListCommand(targetIndex, descriptor);
+        EditStudentCommand expectedCommand = new EditStudentCommand(targetIndex, descriptor);
 
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
     }
