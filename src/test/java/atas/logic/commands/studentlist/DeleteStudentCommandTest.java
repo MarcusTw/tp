@@ -34,7 +34,8 @@ public class DeleteStudentCommandTest {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         DeleteStudentListCommand deleteStudentCommand = new DeleteStudentListCommand(INDEX_FIRST_STUDENT);
 
-        String expectedMessage = String.format(DeleteStudentListCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
+        String expectedMessage = String.format(DeleteStudentListCommand.MESSAGE_DELETE_STUDENT_SUCCESS,
+                studentToDelete);
 
         ModelManager expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
                 model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);
@@ -45,7 +46,7 @@ public class DeleteStudentCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getNumberOfStudents() + 1);
         DeleteStudentListCommand deleteStudentCommand = new DeleteStudentListCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteStudentCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -58,7 +59,8 @@ public class DeleteStudentCommandTest {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         DeleteStudentListCommand deleteStudentCommand = new DeleteStudentListCommand(INDEX_FIRST_STUDENT);
 
-        String expectedMessage = String.format(DeleteStudentListCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
+        String expectedMessage = String.format(DeleteStudentListCommand.MESSAGE_DELETE_STUDENT_SUCCESS,
+                studentToDelete);
 
         Model expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
                 model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);

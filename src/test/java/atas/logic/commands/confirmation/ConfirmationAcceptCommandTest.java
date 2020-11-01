@@ -36,7 +36,8 @@ public class ConfirmationAcceptCommandTest {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         DeleteStudentListCommand deleteStudentCommand = new DeleteStudentListCommand(INDEX_FIRST_STUDENT);
 
-        String expectedMessage = String.format(DeleteStudentListCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
+        String expectedMessage = String.format(DeleteStudentListCommand.MESSAGE_DELETE_STUDENT_SUCCESS,
+                studentToDelete);
 
         ModelManager expectedModel = new ModelManager(getTypicalSessionList(model.getStudentList().getStudentList()),
                 model.getStudentList(), new UserPrefs(), EMPTY_MEMO_CONTENT);
@@ -48,7 +49,7 @@ public class ConfirmationAcceptCommandTest {
 
     @Test
     public void execute_invalidDeleteStudentCommand_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getNumberOfStudents() + 1);
         DeleteStudentListCommand deleteStudentCommand = new DeleteStudentListCommand(outOfBoundIndex);
 
         ConfirmationAcceptCommand confirmationAcceptCommand = new ConfirmationAcceptCommand(deleteStudentCommand);
@@ -62,7 +63,7 @@ public class ConfirmationAcceptCommandTest {
         Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         Student editedStudent = new StudentBuilder(studentInFilteredList).withName(VALID_NAME_BOB).build();
         EditStudentListCommand editStudentCommand = new EditStudentListCommand(INDEX_FIRST_STUDENT,
-            new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditStudentListCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
@@ -76,7 +77,7 @@ public class ConfirmationAcceptCommandTest {
 
     @Test
     public void execute_invalidEditStudentCommand_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getNumberOfStudents() + 1);
         EditStudentListCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder()
 
                 .withName(VALID_NAME_BOB).build();
@@ -104,7 +105,8 @@ public class ConfirmationAcceptCommandTest {
         DeleteStudentListCommand secondDeleteStudentCommand = new DeleteStudentListCommand(INDEX_SECOND_STUDENT);
 
         Student editedStudent = new StudentBuilder().build();
-        EditStudentListCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
+        EditStudentListCommand.EditStudentDescriptor descriptor =
+                new EditStudentDescriptorBuilder(editedStudent).build();
         EditStudentListCommand editStudentCommand = new EditStudentListCommand(INDEX_FIRST_STUDENT, descriptor);
 
         ClearStudentListCommand clearStudentsCommand = new ClearStudentListCommand();

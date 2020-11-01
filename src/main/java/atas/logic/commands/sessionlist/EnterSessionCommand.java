@@ -35,7 +35,7 @@ public class EnterSessionCommand implements IndexedSessionListCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (sessionIndex.getZeroBased() >= model.getFilteredSessionList().size()) {
+        if (sessionIndex.getZeroBased() >= model.getNumberOfSessions()) {
             throw new CommandException(MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
         }
 

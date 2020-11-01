@@ -73,7 +73,8 @@ public class ConfirmationCommandTest {
         DeleteStudentListCommand secondDeleteStudentCommand = new DeleteStudentListCommand(INDEX_SECOND_STUDENT);
 
         Student editedStudent = new StudentBuilder().build();
-        EditStudentListCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
+        EditStudentListCommand.EditStudentDescriptor descriptor =
+                new EditStudentDescriptorBuilder(editedStudent).build();
         EditStudentListCommand editStudentCommand = new EditStudentListCommand(INDEX_FIRST_STUDENT, descriptor);
 
         ClearStudentListCommand clearStudentListCommand = new ClearStudentListCommand();

@@ -68,7 +68,8 @@ public class DeleteSessionCommandTest {
         assertTrue(deleteFirstSessionCommand.equals(deleteFirstSessionCommand));
 
         // same sessionName -> returns true
-        DeleteSessionCommand deleteTutCommandCopy = new DeleteSessionCommand(deleteFirstSessionCommand.getTargetIndex());
+        DeleteSessionCommand deleteTutCommandCopy =
+                new DeleteSessionCommand(deleteFirstSessionCommand.getTargetIndex());
         assertTrue(deleteFirstSessionCommand.equals(deleteTutCommandCopy));
 
         // different types -> returns false

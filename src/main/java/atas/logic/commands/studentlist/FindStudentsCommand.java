@@ -30,7 +30,7 @@ public class FindStudentsCommand implements Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
-        int numberOfStudents = model.getFilteredStudentList().size();
+        int numberOfStudents = model.getNumberOfStudents();
         return new CommandResult(
                 String.format(Messages.getStudentListedMessage(numberOfStudents), numberOfStudents));
     }

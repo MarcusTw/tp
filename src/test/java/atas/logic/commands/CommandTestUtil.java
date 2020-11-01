@@ -154,13 +154,13 @@ public class CommandTestUtil {
      * {@code model}'s student list.
      */
     public static void showStudentAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getNumberOfStudents());
 
         Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
         final String[] splitName = student.getName().fullName.split("\\s+");
         model.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredStudentList().size());
+        assertEquals(1, model.getNumberOfStudents());
     }
 
     /**
@@ -168,12 +168,12 @@ public class CommandTestUtil {
      * {@code model}'s address book.
      */
     public static void showSessionAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredSessionList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getNumberOfSessions());
 
         Session session = model.getFilteredSessionList().get(targetIndex.getZeroBased());
         model.updateFilteredSessionList(s -> s.equals(session));
 
-        assertEquals(1, model.getFilteredSessionList().size());
+        assertEquals(1, model.getNumberOfSessions());
     }
 
 }

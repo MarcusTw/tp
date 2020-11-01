@@ -53,7 +53,7 @@ public class EditStudentCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastStudent = Index.fromOneBased(model.getFilteredStudentList().size());
+        Index indexLastStudent = Index.fromOneBased(model.getNumberOfStudents());
         Student lastStudent = model.getFilteredStudentList().get(indexLastStudent.getZeroBased());
 
         StudentBuilder studentInList = new StudentBuilder(lastStudent);
@@ -129,7 +129,7 @@ public class EditStudentCommandTest {
 
     @Test
     public void execute_invalidStudentIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getNumberOfStudents() + 1);
         EditStudentListCommand.EditStudentDescriptor
                 descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditStudentListCommand editStudentCommand = new EditStudentListCommand(outOfBoundIndex, descriptor);

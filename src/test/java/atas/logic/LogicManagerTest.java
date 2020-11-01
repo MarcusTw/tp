@@ -22,7 +22,6 @@ import org.junit.jupiter.api.io.TempDir;
 
 import atas.commons.core.index.Index;
 import atas.logic.commands.CommandResult;
-import atas.logic.commands.confirmation.ConfirmationCommand;
 import atas.logic.commands.exceptions.CommandException;
 import atas.logic.commands.studentlist.AddStudentCommand;
 import atas.logic.commands.studentlist.DeleteStudentListCommand;
@@ -74,7 +73,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() throws CommandException, ParseException {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getNumberOfStudents() + 1);
         int outOfBoundIndexOneBased = outOfBoundIndex.getOneBased();
 
         String deleteStudentCommand = DeleteStudentListCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased;
