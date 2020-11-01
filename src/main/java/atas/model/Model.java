@@ -173,11 +173,17 @@ public interface Model {
      */
     void updateCurrentAttributesList();
 
-    /** Returns an unmodifiable view of the filtered student list */
+    /** Returns an unmodifiable view of the filtered student list. */
     ObservableList<Student> getFilteredStudentList();
 
-    /** Returns an unmodifiable view of the filtered session list */
+    /** Returns the number of students in the student list. */
+    int getNumberOfStudents();
+
+    /** Returns an unmodifiable view of the filtered session list. */
     ObservableList<Session> getFilteredSessionList();
+
+    /** Returns the number of sessions in the session list. */
+    int getNumberOfSessions();
 
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.

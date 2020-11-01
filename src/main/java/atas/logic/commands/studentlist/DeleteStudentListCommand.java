@@ -15,7 +15,7 @@ import atas.model.student.Student;
 /**
  * Deletes a student identified using it's displayed index from the student list.
  */
-public class DeleteStudentCommand extends DangerousCommand {
+public class DeleteStudentListCommand extends DangerousCommand implements IndexedStudentListCommand {
 
     public static final String COMMAND_WORD = "deletestu";
 
@@ -28,7 +28,7 @@ public class DeleteStudentCommand extends DangerousCommand {
 
     private final Index targetIndex;
 
-    public DeleteStudentCommand(Index targetIndex) {
+    public DeleteStudentListCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -50,13 +50,18 @@ public class DeleteStudentCommand extends DangerousCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteStudentCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteStudentCommand) other).targetIndex)); // state check
+                || (other instanceof DeleteStudentListCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteStudentListCommand) other).targetIndex)); // state check
     }
 
     @Override
     public String toString() {
         String oneBasedIndex = String.valueOf(targetIndex.getOneBased());
         return "Delete " + oneBasedIndex;
+    }
+
+    @Override
+    public Index getTargetIndex() {
+        return targetIndex;
     }
 }

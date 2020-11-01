@@ -189,7 +189,7 @@ public class AddStudentCommandTest {
 
         @Override
         public ObservableList<Attributes> getCurrentAttributesList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -222,9 +222,25 @@ public class AddStudentCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        /**
+         * Returns the number of students in the student list.
+         */
+        @Override
+        public int getNumberOfStudents() {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public ObservableList<Session> getFilteredSessionList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns the number of sessions in the session list.
+         */
+        @Override
+        public int getNumberOfSessions() {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

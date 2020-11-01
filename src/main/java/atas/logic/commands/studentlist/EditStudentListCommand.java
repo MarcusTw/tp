@@ -25,7 +25,7 @@ import atas.model.tag.Tag;
 /**
  * Edits the details of an existing student in the student list.
  */
-public class EditStudentCommand extends DangerousCommand {
+public class EditStudentListCommand extends DangerousCommand implements IndexedStudentListCommand {
 
     public static final String COMMAND_WORD = "editstu";
 
@@ -45,21 +45,21 @@ public class EditStudentCommand extends DangerousCommand {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the student list.";
 
-    private final Index index;
+    private final Index targetIndex;
     private final EditStudentDescriptor editStudentDescriptor;
 
     /**
      * Creates an EditStudentCommand to edit the person at specified Index.
      *
-     * @param index The Index of the student in the filtered student list to edit.
+     * @param targetIndex The Index of the student in the filtered student list to edit.
      * @param editStudentDescriptor The details to edit the student with.
      */
-    public EditStudentCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
+    public EditStudentListCommand(Index targetIndex, EditStudentDescriptor editStudentDescriptor) {
 
-        requireNonNull(index);
+        requireNonNull(targetIndex);
         requireNonNull(editStudentDescriptor);
 
-        this.index = index;
+        this.targetIndex = targetIndex;
         this.editStudentDescriptor = new EditStudentDescriptor(editStudentDescriptor);
     }
 
@@ -68,11 +68,11 @@ public class EditStudentCommand extends DangerousCommand {
         requireNonNull(model);
         List<Student> lastShownList = model.getFilteredStudentList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Student studentToEdit = lastShownList.get(index.getZeroBased());
+        Student studentToEdit = lastShownList.get(targetIndex.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
         if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
@@ -87,7 +87,7 @@ public class EditStudentCommand extends DangerousCommand {
 
     @Override
     public String toString() {
-        String oneBasedIndex = String.valueOf(index.getOneBased());
+        String oneBasedIndex = String.valueOf(targetIndex.getOneBased());
         return "Edit " + oneBasedIndex;
     }
 
@@ -115,14 +115,18 @@ public class EditStudentCommand extends DangerousCommand {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditStudentCommand)) {
+        if (!(other instanceof EditStudentListCommand)) {
             return false;
         }
 
         // state check
-        EditStudentCommand e = (EditStudentCommand) other;
-        return index.equals(e.index)
+        EditStudentListCommand e = (EditStudentListCommand) other;
+        return targetIndex.equals(e.targetIndex)
                 && editStudentDescriptor.equals(e.editStudentDescriptor);
+    }
+
+    public Index getTargetIndex() {
+        return targetIndex;
     }
 
     /**

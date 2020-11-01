@@ -12,7 +12,7 @@ import atas.model.exceptions.UnableToUndoException;
 /**
  * Undoes a the effects of the previous command, if possible.
  */
-public class UndoCommand extends Command {
+public class UndoCommand implements Command {
     public static final String COMMAND_WORD = "undo";
     public static final String MESSAGE_SUCCESS = "Previous command successfully undone!";
 

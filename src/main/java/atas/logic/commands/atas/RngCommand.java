@@ -12,7 +12,7 @@ import atas.model.student.Student;
 /**
  * Generates the name of a random student.
  */
-public class RngCommand extends Command {
+public class RngCommand implements Command {
 
     public static final String COMMAND_WORD = "rng";
 

@@ -10,7 +10,7 @@ import atas.model.Model;
 /**
  * Appends a note on a new line to the end of {@code Memo}.
  */
-public class AddNoteCommand extends Command {
+public class AddNoteCommand implements Command {
 
     public static final String COMMAND_WORD = "addnote";
 

@@ -1,5 +1,7 @@
 package atas.logic.commands.exceptions;
 
+import atas.logic.commands.Command;
+
 /**
  * Represents an error which occurs during execution of a {@link Command}.
  */

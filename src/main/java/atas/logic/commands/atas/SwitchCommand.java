@@ -12,7 +12,7 @@ import atas.ui.Tab;
  * Switches tab using the name of the destination tab.
  * Name of destination tab is case insensitive.
  */
-public class SwitchCommand extends Command {
+public class SwitchCommand implements Command {
 
     public static final String COMMAND_WORD = "switch";
 

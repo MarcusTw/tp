@@ -26,8 +26,8 @@ import atas.logic.commands.sessionlist.session.ParticipateCommand;
 import atas.logic.commands.sessionlist.session.PresenceCommand;
 import atas.logic.commands.studentlist.AddStudentCommand;
 import atas.logic.commands.studentlist.ClearStudentListCommand;
-import atas.logic.commands.studentlist.DeleteStudentCommand;
-import atas.logic.commands.studentlist.EditStudentCommand;
+import atas.logic.commands.studentlist.DeleteStudentListCommand;
+import atas.logic.commands.studentlist.EditStudentListCommand;
 import atas.logic.commands.studentlist.FindStudentsCommand;
 import atas.logic.commands.studentlist.ListStudentsCommand;
 import atas.logic.parser.exceptions.ParseException;
@@ -98,13 +98,13 @@ public class AtasParser {
         case AddStudentCommand.COMMAND_WORD:
             return new AddStudentCommandParser().parse(arguments);
 
-        case EditStudentCommand.COMMAND_WORD:
+        case EditStudentListCommand.COMMAND_WORD:
             //Sets the previous command to a confirmation edit student command.
             this.previousCommand =
                 Optional.of(new ConfirmationCommand(new EditStudentCommandParser().parse(arguments)));
             return previousCommand.get();
 
-        case DeleteStudentCommand.COMMAND_WORD:
+        case DeleteStudentListCommand.COMMAND_WORD:
             //Sets the previous command to a confirmation delete student command.
             this.previousCommand =
                 Optional.of(new ConfirmationCommand(new DeleteStudentCommandParser().parse(arguments)));

@@ -17,7 +17,7 @@ import atas.model.session.SessionName;
 /**
  * Toggles the participation status of certain students in particular sessions.
  */
-public class PresenceCommand extends Command {
+public class PresenceCommand implements Command {
 
     public static final String COMMAND_WORD = "presence";
 

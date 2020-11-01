@@ -5,7 +5,7 @@ import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
 import atas.model.Model;
 
-public abstract class ConfirmCommand extends Command {
+public abstract class ConfirmCommand implements Command {
     private final DangerousCommand dangerousCommand;
 
     public ConfirmCommand(DangerousCommand dangerousCommand) {

@@ -12,7 +12,7 @@ import atas.model.exceptions.UnableToRedoException;
 /**
  * Undoes a the effects of the previous command, if possible.
  */
-public class RedoCommand extends Command {
+public class RedoCommand implements Command {
     public static final String COMMAND_WORD = "redo";
     public static final String MESSAGE_SUCCESS = "Previous command successfully redone!";
 

@@ -12,7 +12,7 @@ import atas.model.student.Student;
 /**
  * Adds a student to the class.
  */
-public class AddStudentCommand extends Command {
+public class AddStudentCommand implements Command {
 
     public static final String COMMAND_WORD = "addstu";
 

@@ -25,8 +25,8 @@ import atas.logic.commands.CommandResult;
 import atas.logic.commands.confirmation.ConfirmationCommand;
 import atas.logic.commands.exceptions.CommandException;
 import atas.logic.commands.studentlist.AddStudentCommand;
-import atas.logic.commands.studentlist.DeleteStudentCommand;
-import atas.logic.commands.studentlist.EditStudentCommand;
+import atas.logic.commands.studentlist.DeleteStudentListCommand;
+import atas.logic.commands.studentlist.EditStudentListCommand;
 import atas.logic.commands.studentlist.ListStudentsCommand;
 import atas.logic.parser.exceptions.ParseException;
 import atas.model.Model;
@@ -77,15 +77,13 @@ public class LogicManagerTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         int outOfBoundIndexOneBased = outOfBoundIndex.getOneBased();
 
-        String deleteStudentCommand = DeleteStudentCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased;
-        assertCommandSuccess(deleteStudentCommand, String.format(ConfirmationCommand.MESSAGE_CONFIRMATION_DELETE,
-                outOfBoundIndexOneBased), model);
+        String deleteStudentCommand = DeleteStudentListCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased;
+        assertCommandException(deleteStudentCommand, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         assertCommandException(ACCEPT_COMMAND_FULL, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
 
-        String editStudentCommand = EditStudentCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased + " "
+        String editStudentCommand = EditStudentListCommand.COMMAND_WORD + " " + outOfBoundIndexOneBased + " "
                 + PREFIX_TAG + "newTag";
-        assertCommandSuccess(editStudentCommand, String.format(ConfirmationCommand.MESSAGE_CONFIRMATION_EDIT,
-                outOfBoundIndexOneBased), model);
+        assertCommandException(editStudentCommand, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         assertCommandException(ACCEPT_COMMAND_FULL, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 

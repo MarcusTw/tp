@@ -4,13 +4,12 @@ import static atas.commons.core.Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX
 import static java.util.Objects.requireNonNull;
 
 import atas.commons.core.index.Index;
-import atas.logic.commands.Command;
 import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
 import atas.model.Model;
 import atas.ui.Tab;
 
-public class EnterSessionCommand extends Command {
+public class EnterSessionCommand implements IndexedSessionListCommand {
 
     public static final String COMMAND_WORD = "enterses";
 
@@ -43,6 +42,11 @@ public class EnterSessionCommand extends Command {
         model.enterSession(sessionIndex);
         return new CommandResult(String.format(MESSAGE_SUCCESS, sessionIndex.getOneBased()),
             false, Tab.CURRENT, false, false, true);
+    }
+
+    @Override
+    public Index getTargetIndex() {
+        return sessionIndex;
     }
 
     @Override

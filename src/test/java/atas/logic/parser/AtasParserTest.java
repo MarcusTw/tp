@@ -33,8 +33,8 @@ import atas.logic.commands.sessionlist.session.ParticipateCommand;
 import atas.logic.commands.sessionlist.session.PresenceCommand;
 import atas.logic.commands.studentlist.AddStudentCommand;
 import atas.logic.commands.studentlist.ClearStudentListCommand;
-import atas.logic.commands.studentlist.DeleteStudentCommand;
-import atas.logic.commands.studentlist.EditStudentCommand;
+import atas.logic.commands.studentlist.DeleteStudentListCommand;
+import atas.logic.commands.studentlist.EditStudentListCommand;
 import atas.logic.commands.studentlist.FindStudentsCommand;
 import atas.logic.commands.studentlist.ListStudentsCommand;
 import atas.logic.parser.exceptions.ParseException;
@@ -71,17 +71,18 @@ public class AtasParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         ConfirmationCommand command = (ConfirmationCommand) parser.parseCommand(
-                DeleteStudentCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
-        assertEquals(new ConfirmationCommand(new DeleteStudentCommand(INDEX_FIRST_STUDENT)), command);
+                DeleteStudentListCommand.COMMAND_WORD + " " + INDEX_FIRST_STUDENT.getOneBased());
+        assertEquals(new ConfirmationCommand(new DeleteStudentListCommand(INDEX_FIRST_STUDENT)), command);
     }
 
     @Test
     public void parseCommand_edit() throws Exception {
         Student student = new StudentBuilder().build();
-        EditStudentCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
-        ConfirmationCommand command = (ConfirmationCommand) parser.parseCommand(EditStudentCommand.COMMAND_WORD + " "
+        EditStudentListCommand.EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
+        ConfirmationCommand command = (ConfirmationCommand) parser.parseCommand(
+            EditStudentListCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_STUDENT.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
-        assertEquals(new ConfirmationCommand(new EditStudentCommand(INDEX_FIRST_STUDENT, descriptor)), command);
+        assertEquals(new ConfirmationCommand(new EditStudentListCommand(INDEX_FIRST_STUDENT, descriptor)), command);
     }
 
     @Test

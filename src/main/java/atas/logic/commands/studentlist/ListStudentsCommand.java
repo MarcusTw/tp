@@ -10,7 +10,7 @@ import atas.model.Model;
 /**
  * Lists all students in the student list to the user.
  */
-public class ListStudentsCommand extends Command {
+public class ListStudentsCommand implements Command {
 
     public static final String COMMAND_WORD = "liststu";
 

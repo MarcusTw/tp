@@ -5,7 +5,7 @@ import atas.logic.commands.CommandResult;
 import atas.logic.commands.exceptions.CommandException;
 import atas.model.Model;
 
-public abstract class DangerousCommand extends Command {
+public abstract class DangerousCommand implements Command {
     /**
      * Executes the command and returns the result message.
      *

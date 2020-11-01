@@ -17,7 +17,7 @@ import atas.model.session.SessionName;
 /**
  * Toggles the participation status of certain students in particular sessions.
  */
-public class ParticipateCommand extends Command {
+public class ParticipateCommand implements Command {
 
     public static final String COMMAND_WORD = "participate";
 

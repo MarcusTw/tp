@@ -11,7 +11,7 @@ import java.util.List;
 import atas.commons.core.index.Index;
 import atas.logic.commands.exceptions.CommandException;
 import atas.logic.commands.sessionlist.EditSessionCommand;
-import atas.logic.commands.studentlist.EditStudentCommand;
+import atas.logic.commands.studentlist.EditStudentListCommand;
 import atas.logic.parser.CliSyntax;
 import atas.model.Model;
 import atas.model.session.Session;
@@ -55,8 +55,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditStudentCommand.EditStudentDescriptor DESC_AMY;
-    public static final EditStudentCommand.EditStudentDescriptor DESC_BOB;
+    public static final EditStudentListCommand.EditStudentDescriptor DESC_AMY;
+    public static final EditStudentListCommand.EditStudentDescriptor DESC_BOB;
 
 
 

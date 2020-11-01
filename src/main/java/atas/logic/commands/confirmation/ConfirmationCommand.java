@@ -1,8 +1,14 @@
 package atas.logic.commands.confirmation;
 
+import static atas.commons.core.Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX;
+import static atas.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static java.util.Objects.requireNonNull;
 
+import atas.commons.core.index.Index;
 import atas.logic.commands.CommandResult;
+import atas.logic.commands.exceptions.CommandException;
+import atas.logic.commands.sessionlist.IndexedSessionListCommand;
+import atas.logic.commands.studentlist.IndexedStudentListCommand;
 import atas.model.Model;
 
 /**
@@ -32,9 +38,23 @@ public class ConfirmationCommand extends ConfirmCommand {
      * @return feedback message of the operation result for display
      */
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        return new CommandResult(String.format("%s? %s", getDangerousCommand(), MESSAGE_CONFIRMATION));
+        DangerousCommand dangerousCommand = getDangerousCommand();
+        if (dangerousCommand instanceof IndexedStudentListCommand) {
+            Index targetIndex = ((IndexedStudentListCommand) dangerousCommand).getTargetIndex();
+            int numberOfStudents = model.getNumberOfStudents();
+            if (targetIndex.getOneBased() > numberOfStudents) {
+                throw new CommandException(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+            }
+        } else if (dangerousCommand instanceof IndexedSessionListCommand) {
+            Index targetIndex = ((IndexedSessionListCommand) dangerousCommand).getTargetIndex();
+            int numberOfSessions = model.getNumberOfSessions();
+            if (targetIndex.getOneBased() > numberOfSessions) {
+                throw new CommandException(MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
+            }
+        }
+        return new CommandResult(String.format("%s? %s", dangerousCommand, MESSAGE_CONFIRMATION));
     }
 
     public ConfirmationAcceptCommand accept() {

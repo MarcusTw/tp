@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import atas.logic.commands.studentlist.EditStudentCommand.EditStudentDescriptor;
+import atas.logic.commands.studentlist.EditStudentListCommand.EditStudentDescriptor;
 import atas.testutil.EditStudentDescriptorBuilder;
 
 public class EditStudentDescriptorTest {
@@ -19,7 +19,7 @@ public class EditStudentDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditStudentDescriptor descriptorWithSameValues = new EditStudentCommand.EditStudentDescriptor(DESC_AMY);
+        EditStudentDescriptor descriptorWithSameValues = new EditStudentListCommand.EditStudentDescriptor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -35,7 +35,7 @@ public class EditStudentDescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different name -> returns false
-        EditStudentCommand.EditStudentDescriptor
+        EditStudentListCommand.EditStudentDescriptor
                 editedAmy = new EditStudentDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 

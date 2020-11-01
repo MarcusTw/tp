@@ -3,7 +3,7 @@ package atas.testutil;
 import java.util.Set;
 
 import atas.logic.commands.studentlist.AddStudentCommand;
-import atas.logic.commands.studentlist.EditStudentCommand.EditStudentDescriptor;
+import atas.logic.commands.studentlist.EditStudentListCommand.EditStudentDescriptor;
 import atas.logic.parser.CliSyntax;
 import atas.model.student.Student;
 import atas.model.tag.Tag;

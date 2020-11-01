@@ -17,7 +17,7 @@ import atas.model.session.Session;
 import atas.model.session.SessionDate;
 import atas.model.session.SessionName;
 
-public class EditSessionCommand extends DangerousCommand {
+public class EditSessionCommand extends DangerousCommand implements IndexedSessionListCommand {
 
     public static final String COMMAND_WORD = "editses";
 
@@ -36,20 +36,20 @@ public class EditSessionCommand extends DangerousCommand {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_SESSION = "This session already exists in the session list.";
 
-    private final Index index;
+    private final Index targetIndex;
     private final EditSessionCommand.EditSessionDescriptor editSessionDescriptor;
 
     /**
      * Parameterized Constructor.
-     * @param index The Index of the session in the filtered session list to edit.
+     * @param targetIndex The Index of the session in the filtered session list to edit.
      * @param editSessionDescriptor details to edit the session with
      */
-    public EditSessionCommand(Index index,
+    public EditSessionCommand(Index targetIndex,
                               EditSessionCommand.EditSessionDescriptor editSessionDescriptor) {
-        requireNonNull(index);
+        requireNonNull(targetIndex);
         requireNonNull(editSessionDescriptor);
 
-        this.index = index;
+        this.targetIndex = targetIndex;
         this.editSessionDescriptor = new EditSessionCommand.EditSessionDescriptor(editSessionDescriptor);
     }
 
@@ -58,11 +58,11 @@ public class EditSessionCommand extends DangerousCommand {
         requireNonNull(model);
         List<Session> lastShownList = model.getFilteredSessionList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
         }
 
-        Session sessionToEdit = lastShownList.get(index.getZeroBased());
+        Session sessionToEdit = lastShownList.get(targetIndex.getZeroBased());
         Session editedSession = createEditedSession(sessionToEdit, editSessionDescriptor);
 
         if (!sessionToEdit.isSameSession(editedSession) && model.hasSession(editedSession)) {
@@ -76,8 +76,13 @@ public class EditSessionCommand extends DangerousCommand {
     }
 
     @Override
+    public Index getTargetIndex() {
+        return targetIndex;
+    }
+
+    @Override
     public String toString() {
-        String oneBasedIndex = String.valueOf(index.getOneBased());
+        String oneBasedIndex = String.valueOf(targetIndex.getOneBased());
         return "Edit " + oneBasedIndex;
     }
 
@@ -111,7 +116,7 @@ public class EditSessionCommand extends DangerousCommand {
 
         // state check
         EditSessionCommand e = (EditSessionCommand) other;
-        return index.equals(e.index)
+        return targetIndex.equals(e.targetIndex)
                 && editSessionDescriptor.equals(e.editSessionDescriptor);
     }
 

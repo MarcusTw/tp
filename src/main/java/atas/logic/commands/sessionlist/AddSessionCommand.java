@@ -12,7 +12,7 @@ import atas.model.session.Session;
 /**
  * Creates a new class session.
  */
-public class AddSessionCommand extends Command {
+public class AddSessionCommand implements Command {
 
     public static final String COMMAND_WORD = "addses";
 

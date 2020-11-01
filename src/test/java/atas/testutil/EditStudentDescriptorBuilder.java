@@ -4,8 +4,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import atas.logic.commands.studentlist.EditStudentCommand;
-import atas.logic.commands.studentlist.EditStudentCommand.EditStudentDescriptor;
+import atas.logic.commands.studentlist.EditStudentListCommand;
+import atas.logic.commands.studentlist.EditStudentListCommand.EditStudentDescriptor;
 import atas.model.student.Email;
 import atas.model.student.Matriculation;
 import atas.model.student.Name;
@@ -20,7 +20,7 @@ public class EditStudentDescriptorBuilder {
     private EditStudentDescriptor descriptor;
 
     public EditStudentDescriptorBuilder() {
-        descriptor = new EditStudentCommand.EditStudentDescriptor();
+        descriptor = new EditStudentListCommand.EditStudentDescriptor();
     }
 
     public EditStudentDescriptorBuilder(EditStudentDescriptor descriptor) {
@@ -31,7 +31,7 @@ public class EditStudentDescriptorBuilder {
      * Returns an {@code EditStudentDescriptor} with fields containing {@code student}'s details
      */
     public EditStudentDescriptorBuilder(Student student) {
-        descriptor = new EditStudentCommand.EditStudentDescriptor();
+        descriptor = new EditStudentListCommand.EditStudentDescriptor();
         descriptor.setName(student.getName());
         descriptor.setMatriculation(student.getMatriculation());
         descriptor.setEmail(student.getEmail());

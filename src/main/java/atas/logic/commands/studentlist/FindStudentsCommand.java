@@ -12,7 +12,7 @@ import atas.model.student.NameContainsKeywordsPredicate;
  * Finds and lists all students in student list whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindStudentsCommand extends Command {
+public class FindStudentsCommand implements Command {
     public static final String COMMAND_WORD = "findstu";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all students whose names contain any of "
