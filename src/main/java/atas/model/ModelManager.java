@@ -222,7 +222,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteSession(Session target, Index id) {
-        sessionList.updateStudentList(studentList.getStudentList());
+        //sessionList.updateStudentList(studentList.getStudentList());
         sessionList.deleteSession(target);
         if (id.equals(this.sessionId)) {
             this.sessionId = null;
@@ -270,7 +270,15 @@ public class ModelManager implements Model {
     @Override
     public Session getCurrentSession() {
         assert sessionId != null : "Attempted to get current session when session ID is null";
-        return sessionList.getSessionBasedOnId(sessionId);
+        try {
+            return sessionList.getSessionBasedOnId(sessionId);
+        } catch (IndexOutOfBoundsException e) {
+            if (sessionId.getZeroBased() == 0) {
+                sessionId = null;
+                throw e;
+            }
+            return sessionList.getSessionBasedOnId(Index.fromZeroBased(sessionId.getZeroBased() - 1));
+        }
     }
 
     @Override
@@ -362,33 +370,42 @@ public class ModelManager implements Model {
 
     @Override
     public String getLeftSessionDetails() {
+        String nullSessionDetails = "Currently not in any session";
         if (sessionId == null) {
-            String nullSessionDetails = "Currently not in any session";
             return nullSessionDetails;
         } else {
-            requireNonNull(sessionList);
-            Session currentEnteredSession = getCurrentSession();
-            requireNonNull(currentEnteredSession);
-            String sessionName = currentEnteredSession.getSessionName().toString();
-            String sessionDate = currentEnteredSession.getSessionDate().toString();
-            return String.format("Current Session: %s   Date: %s", sessionName, sessionDate);
+            try {
+                requireNonNull(sessionList);
+                Session currentEnteredSession;
+                currentEnteredSession = getCurrentSession();
+                requireNonNull(currentEnteredSession);
+                String sessionName = currentEnteredSession.getSessionName().toString();
+                String sessionDate = currentEnteredSession.getSessionDate().toString();
+                return String.format("Current Session: %s   Date: %s", sessionName, sessionDate);
+            } catch (IndexOutOfBoundsException e) {
+                return nullSessionDetails;
+            }
         }
     }
 
     @Override
     public String getRightSessionDetails() {
+        String nullSessionDetails = "";
         if (sessionId == null) {
-            String nullSessionDetails = "";
             return nullSessionDetails;
         } else {
-            requireNonNull(sessionList);
-            Session currentEnteredSession = getCurrentSession();
-            requireNonNull(currentEnteredSession);
-            String presenceStats = currentEnteredSession.getSessionStats()
-                .getPresenceStatistics().getDataAsPercentage();
-            String participationStats = currentEnteredSession.getSessionStats()
-                .getParticipationStatistics().getDataAsPercentage();
-            return String.format("%s    %s", presenceStats, participationStats);
+            try {
+                requireNonNull(sessionList);
+                Session currentEnteredSession = getCurrentSession();
+                requireNonNull(currentEnteredSession);
+                String presenceStats = currentEnteredSession.getSessionStats()
+                    .getPresenceStatistics().getDataAsPercentage();
+                String participationStats = currentEnteredSession.getSessionStats()
+                    .getParticipationStatistics().getDataAsPercentage();
+                return String.format("%s    %s", presenceStats, participationStats);
+            } catch (IndexOutOfBoundsException e) {
+                return nullSessionDetails;
+            }
         }
     }
 

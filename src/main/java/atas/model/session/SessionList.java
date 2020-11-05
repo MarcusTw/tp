@@ -162,6 +162,9 @@ public class SessionList implements Iterable<Session>, ReadOnlySessionList {
     }
 
     public Session getSessionBasedOnId(Index index) {
+        if (index.getZeroBased() >= sessions.size()) {
+            throw new IndexOutOfBoundsException();
+        }
         return sessions.get(index.getZeroBased());
     }
 
